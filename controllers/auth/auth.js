@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const passport = require('passport');
 
 router.get('/session', async (req, res) => {
   try {
@@ -8,4 +9,28 @@ router.get('/session', async (req, res) => {
   }
 });
 
+router.get(
+  '/github',
+  passport.authenticate('github', { scope: ['user:email'] })
+);
+
+router.get(
+  '/github/callback',
+  passport.authenticate('github', { failureRedirect: '/' }),
+  async (req, res) => {
+    if (!req.user.first_name) {
+      res.redirect('/profile/');
+    } else {
+      res.redirect('/directory/');
+    }
+  }
+);
+
+
+router.get('/logout', function(req, res, next) {
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
+});
 module.exports = router;
