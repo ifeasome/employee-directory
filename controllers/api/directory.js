@@ -1,8 +1,9 @@
 const router = require('express').Router();
 require('dotenv').config();
 const { Person, Address } = require('../../models');
+const { isLoggedIn, hasProfile } = require('../../utils/auth');
 
-router.get('/', async (req, res) => {
+router.get('/', isLoggedIn, async (req, res) => {
   try {
     const { rows } = await Person.getAll();
 
@@ -13,13 +14,13 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', hasProfile, async (req, res) => {
   try {
-    const newPersonEnrty = {
+    const newPersonEntry = {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       phone: req.body.phone,
-      github_id: '0123456789'
+      github_id: req.user.github_id
     };
     
     const personsAddress = {
@@ -28,14 +29,17 @@ router.post('/', async (req, res) => {
       state: req.body.state,
     };
 
-    const { rows } = await Person.create(newPersonEnrty);
+    const { rows } = await Person.create(newPersonEntry);
 
     await Address.create({
       ...personsAddress,
       person_id: rows[0].id,
     });
 
-    res.status(200).json({ message: 'Success' });
+    req.login (newPersonEntry, () => {
+      res.status(200).json({ message: 'Success' });
+    });
+    
   } catch (err) {
     console.error(err);
     res.status(500).end();
