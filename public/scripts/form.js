@@ -5,10 +5,7 @@ profileForm.addEventListener('submit', async (event) => {
   
   const response = await fetch('/api/directory', {
     method: 'POST',
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: new URLSearchParams(new FormData(profileForm)),
+    body: new FormData(profileForm)
 })
 
   const results = await response.json();
