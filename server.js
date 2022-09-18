@@ -36,4 +36,5 @@ app.use(routes);
 
 app.listen(PORT, () => {
   console.log(`Server started on port: ${PORT}`);
+  console.log('look here', serverSession);
 });
