@@ -43,7 +43,7 @@ To use this app, follow the deployed links below:
 
 ## Application_Demo 
 See Application Demo below: </br>
-![Demo Run](Public/Demo.gif)
+![Demo Run](public/Demo.gif)
 
 ## Technologies
 Technologies used: 
