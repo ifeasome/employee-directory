@@ -1,8 +1,8 @@
 # Employee-Directory
 ![License Badge](https://img.shields.io/badge/license-MIT-blue.svg) 
-![License Badge](https://img.shields.io/badge/-Redis-connect-blueviolet)
+![License Badge](https://img.shields.io/badge/-RedisConnect-blueviolet)
 ![License Badge](https://img.shields.io/badge/-PassportJS-ff69b4)
-![License Badge](https://img.shields.io/badge/-Express-session-yellowgreen)
+![License Badge](https://img.shields.io/badge/-ExpressSession-yellowgreen)
 ![License Badge](https://img.shields.io/badge/-Multer-orange)
 ![License Badge](https://img.shields.io/badge/-Helmet-red)
 ![License Badge](https://img.shields.io/badge/-Pgcrypto-9cf)
